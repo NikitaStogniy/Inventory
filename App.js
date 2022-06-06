@@ -1,20 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { userAuthentication } from './utils/hooks/userAuthentication';
+import UserStack from './screens/navigation/userStack';
+import AuthStack from './screens/navigation/authStack';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default function RootNavigation() {
+  const { user } = userAuthentication();
+
+  return user ? <UserStack /> : <AuthStack />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
